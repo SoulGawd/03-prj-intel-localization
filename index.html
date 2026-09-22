@@ -13,6 +13,7 @@
     <nav class="topbar" aria-label="Main navigation">
       <img class="intel-logo" src="img/intel-header-logo.svg" alt="Intel" />
       <span class="eyebrow">Sustainability / 1968—2040</span>
+      <div id="google_translate_element" aria-label="Choose page language"></div>
     </nav>
     <div class="hero-content">
       <p class="eyebrow">A timeline of progress</p>
@@ -103,6 +104,18 @@
       </nav>
     </div>
   </footer>
+
+  <!-- Google Translate adds a language menu so visitors can translate the page. -->
+  <script>
+    window.googleTranslateElementInit = () => {
+      new google.translate.TranslateElement({
+        pageLanguage: 'en',
+        includedLanguages: 'ar,zh-CN,ja,en,fa,ur',
+        autoDisplay: false
+      }, 'google_translate_element');
+    };
+  </script>
+  <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
   <script>
     // Show only the milestones that match the selected filter.
