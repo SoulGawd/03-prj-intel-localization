@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Intel: Sustainability Through the Ages</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -49,7 +50,59 @@
       <article class="timeline-card climate-card" data-category="climate"><div class="card-year">2024</div><div class="timeline-dot"></div><div class="card-content"><div class="climate-mark">∿</div><div class="card-copy"><p class="card-label">Collaboration at scale</p><h3>Sustainability summit</h3><p>Suppliers, government officials, and industry leaders come together to shape next-generation sustainable manufacturing.</p></div></div></article>
     </div>
     <p class="footer-note">Intel sustainability is a work in progress — and progress is a team sport.</p>
+
+    <!-- Bootstrap creates three responsive columns below the timeline. -->
+    <section class="container py-5" dir="rtl" aria-labelledby="focus-heading">
+      <h2 id="focus-heading" class="mb-4">Three areas of focus</h2>
+      <div class="row g-4">
+        <div class="col-12 col-md-4">
+          <article class="p-4 h-100 bg-light">
+            <h3>Climate</h3>
+            <p class="mb-0">Reducing emissions and increasing renewable electricity across operations.</p>
+          </article>
+        </div>
+        <div class="col-12 col-md-4">
+          <article class="p-4 h-100 bg-light">
+            <h3>Water</h3>
+            <p class="mb-0">Working toward more responsible water use in manufacturing.</p>
+          </article>
+        </div>
+        <div class="col-12 col-md-4">
+          <article class="p-4 h-100 bg-light">
+            <h3>Waste</h3>
+            <p class="mb-0">Designing processes that reduce waste and support reuse.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bootstrap styles this newsletter form and keeps it responsive. -->
+    <section class="container pb-5" dir="rtl" aria-labelledby="subscribe-heading">
+      <h2 id="subscribe-heading" class="mb-3">Stay informed</h2>
+      <p>Subscribe to receive Intel sustainability updates.</p>
+      <form class="row g-3 align-items-end" action="#" method="post">
+        <div class="col-12 col-md-8">
+          <label class="form-label" for="subscriber-email">Email address</label>
+          <input class="form-control" type="email" id="subscriber-email" name="email" placeholder="you@example.com" required />
+        </div>
+        <div class="col-12 col-md-4">
+          <button class="btn btn-primary w-100" type="submit">Subscribe</button>
+        </div>
+      </form>
+    </section>
   </main>
+
+  <!-- The footer provides copyright information and helpful navigation links. -->
+  <footer class="bg-dark text-white py-4" dir="rtl">
+    <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center gap-3">
+      <p class="mb-0">&copy; 2026 Intel Corporation. All rights reserved.</p>
+      <nav aria-label="Footer navigation">
+        <a class="text-white text-decoration-none me-3" href="#">Privacy Policy</a>
+        <a class="text-white text-decoration-none me-3" href="#">Terms of Use</a>
+        <a class="text-white text-decoration-none" href="mailto:contact@example.com">Contact</a>
+      </nav>
+    </div>
+  </footer>
 
   <script>
     // Show only the milestones that match the selected filter.
@@ -62,6 +115,27 @@
         const filter = button.dataset.filter;
         cards.forEach((card) => card.classList.toggle('hidden', filter !== 'all' && card.dataset.category !== filter));
       });
+    });
+
+    // Update the page direction when its language changes, including translation changes.
+    const rtlLanguages = new Set(['ar', 'fa', 'ur', 'ps', 'sd', 'ku', 'yi']);
+    const ltrLanguages = new Set(['en', 'ja', 'zh']);
+    const updatePageDirection = () => {
+      const language = (document.documentElement.lang || document.body.lang || navigator.language || 'en').toLowerCase();
+      const languageCode = language.split('-')[0];
+      const translatedRtl = document.documentElement.classList.contains('translated-rtl') || document.body.classList.contains('translated-rtl');
+      const translatedLtr = document.documentElement.classList.contains('translated-ltr') || document.body.classList.contains('translated-ltr');
+      const isRtl = rtlLanguages.has(languageCode);
+      const isLtr = ltrLanguages.has(languageCode);
+      document.documentElement.dir = translatedRtl || (!translatedLtr && isRtl && !isLtr) ? 'rtl' : 'ltr';
+    };
+
+    updatePageDirection();
+    const languageObserver = new MutationObserver(updatePageDirection);
+    languageObserver.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['lang', 'class'],
+      subtree: true
     });
   </script>
 </body>
