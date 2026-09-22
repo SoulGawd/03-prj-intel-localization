@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Intel: Sustainability Through the Ages</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- The header introduces the story and the main progress number. -->
+  <header class="hero">
+    <nav class="topbar" aria-label="Main navigation">
+      <img class="intel-logo" src="img/intel-header-logo.svg" alt="Intel" />
+      <span class="eyebrow">Sustainability / 1968—2040</span>
+    </nav>
+    <div class="hero-content">
+      <p class="eyebrow">A timeline of progress</p>
+      <h1>Engineering a more <em>responsible</em> future.</h1>
+      <p class="intro">From the first commercial microprocessor to a net-zero ambition, explore the moments that have shaped Intel's sustainability journey.</p>
+      <a class="jump-link" href="#timeline">Explore the timeline <span aria-hidden="true">↓</span></a>
+    </div>
+    <div class="hero-stats" aria-label="Sustainability highlights">
+      <div><strong>99%</strong><span>renewable electricity<br />achieved in 2023</span></div>
+      <div><strong>2040</strong><span>target for net-zero<br />Scope 1 &amp; 2 emissions</span></div>
+      <div><strong>2030</strong><span>RISE goals guiding<br />the next decade</span></div>
+    </div>
+  </header>
+
+  <main id="timeline" class="timeline-area">
+    <div class="section-heading">
+      <div><p class="eyebrow">The journey so far</p><h2>Milestones with momentum.</h2></div>
+      <p class="section-note">Select a lens to trace the story.</p>
+    </div>
+    <!-- Buttons filter the cards without needing another page. -->
+    <div class="filters" role="group" aria-label="Filter timeline milestones">
+      <button class="filter-button active" type="button" data-filter="all">All milestones</button>
+      <button class="filter-button" type="button" data-filter="innovation">Innovation</button>
+      <button class="filter-button" type="button" data-filter="climate">Climate action</button>
+    </div>
+    <div class="timeline" aria-live="polite">
+      <article class="timeline-card" data-category="innovation"><div class="card-year">1968</div><div class="timeline-dot"></div><div class="card-content"><img src="img/1.jpg" alt="Early semiconductor technology" /><div class="card-copy"><p class="card-label">The beginning</p><h3>Intel is founded</h3><p>Robert Noyce and Gordon Moore rename NM Electronics, laying the foundation for decades of technology innovation.</p></div></div></article>
+      <article class="timeline-card" data-category="innovation"><div class="card-year">1971</div><div class="timeline-dot"></div><div class="card-content"><img src="img/2.jpg" alt="A close-up of a computer chip" /><div class="card-copy"><p class="card-label">A tiny revolution</p><h3>First microprocessor</h3><p>Intel debuts the 4004, the world's first commercial microprocessor, and changes the future of computing.</p></div></div></article>
+      <article class="timeline-card" data-category="innovation"><div class="card-year">1978</div><div class="timeline-dot"></div><div class="card-content"><img src="img/3.jpg" alt="Intel 8086 processor" /><div class="card-copy"><p class="card-label">Building the standard</p><h3>8086 processor</h3><p>The launch of the 8086 establishes the x86 architecture that will drive countless PCs and servers.</p></div></div></article>
+      <article class="timeline-card" data-category="innovation"><div class="card-year">1985</div><div class="timeline-dot"></div><div class="card-content"><img src="img/4.jpg" alt="Intel processor technology" /><div class="card-copy"><p class="card-label">More power, less space</p><h3>386 processor</h3><p>A 32-bit architecture ushers in a new era of performance and multitasking for personal computers.</p></div></div></article>
+      <article class="timeline-card climate-card" data-category="climate"><div class="card-year">2006</div><div class="timeline-dot"></div><div class="card-content"><div class="climate-mark">CO<sub>2</sub></div><div class="card-copy"><p class="card-label">A turning point</p><h3>Peak GHG emissions</h3><p>After its highest annual operational emissions, Intel invests in chemical abatement, renewables, and efficient manufacturing.</p></div></div></article>
+      <article class="timeline-card climate-card" data-category="climate"><div class="card-year">2020</div><div class="timeline-dot"></div><div class="card-content"><div class="climate-mark rise-mark">RISE</div><div class="card-copy"><p class="card-label">A shared direction</p><h3>RISE strategy launches</h3><p>Responsible, Inclusive, Sustainable, Enabling goals set a 2030 vision for climate, water, and waste progress.</p></div></div></article>
+      <article class="timeline-card climate-card" data-category="climate"><div class="card-year">2022</div><div class="timeline-dot"></div><div class="card-content"><div class="climate-mark">0<span>40</span></div><div class="card-copy"><p class="card-label">The long view</p><h3>Net-zero by 2040</h3><p>Intel commits to net-zero Scope 1 and 2 greenhouse gas emissions across its global operations by 2040.</p></div></div></article>
+      <article class="timeline-card climate-card" data-category="climate"><div class="card-year">2023</div><div class="timeline-dot"></div><div class="card-content"><div class="climate-mark percent-mark">99<sup>%</sup></div><div class="card-copy"><p class="card-label">Powering progress</p><h3>Renewable electricity</h3><p>Worldwide renewable electricity use reaches 99%, helping lower carbon emissions across Intel's operations.</p></div></div></article>
+      <article class="timeline-card climate-card" data-category="climate"><div class="card-year">2024</div><div class="timeline-dot"></div><div class="card-content"><div class="climate-mark">∿</div><div class="card-copy"><p class="card-label">Collaboration at scale</p><h3>Sustainability summit</h3><p>Suppliers, government officials, and industry leaders come together to shape next-generation sustainable manufacturing.</p></div></div></article>
+    </div>
+    <p class="footer-note">Intel sustainability is a work in progress — and progress is a team sport.</p>
+  </main>
+
+  <script>
+    // Show only the milestones that match the selected filter.
+    const buttons = document.querySelectorAll('.filter-button');
+    const cards = document.querySelectorAll('.timeline-card');
+    buttons.forEach((button) => {
+      button.addEventListener('click', () => {
+        buttons.forEach((item) => item.classList.remove('active'));
+        button.classList.add('active');
+        const filter = button.dataset.filter;
+        cards.forEach((card) => card.classList.toggle('hidden', filter !== 'all' && card.dataset.category !== filter));
+      });
+    });
+  </script>
+</body>
+</html>
